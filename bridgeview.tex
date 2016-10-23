@@ -121,12 +121,30 @@
 \begin{frame}{Overview}
   \begin{itemize}
   \item 30 models of bridges
-  \item 4535 rendered RGBD images (4100 training, 435 test)
+  \item 4535 rendered RGBD images
+    \begin{itemize}
+    \item 4100 training
+    \item 435 test
+    \end{itemize}
   \item Hierarchical labels
     \begin{itemize}
-    \item Geometric labels (12) / class labels (7) / part labels (28)
+    \item Geometric labels (12)
+    \item Class labels (7)
+    \item Part labels (28)
     \end{itemize}
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Models}
+  Start with models from various sources and prepare for rendering.
+
+  Need to add landscape, roads and vegetation.
+
+  Models prepared and rendered using Blender.
+\end{frame}
+
+\begin{frame}[plain]
+  \includegraphics[width=\textwidth]{blender.png}
 \end{frame}
 
 \begin{frame}{TODO}
@@ -229,11 +247,9 @@
   terrain, vegetation, bridge are very well recognised. The main
   parts of the bridge are also well identified: columns, piers,
   abutment, deck.}
-
 \note{There are of course mistakes as well, like in the picture on
   top, the network unifies the two piers.  But overall it does get the
   classes, even the smaller ones like handrails.}
-
 \note{\ldots and light-poles. There is a lot of potential in this
   approach. The challenge now is to get some real labelled data, to
   fine-tune the network on real data, so that it is capable of
@@ -242,7 +258,13 @@
 \section{Conclusion}
 
 \begin{frame}{Summary}
-  Git repositories
+  Data generation scripts are open source (GPL) and available from
+
+  \begin{center}
+    \href{https://github.com/jaantoots/bridgeview}{github.com/jaantoots/bridgeview}
+  \end{center}
+
+  Model files and the complete dataset will be made available.
 \end{frame}
 
 \begin{frame}[standout]
