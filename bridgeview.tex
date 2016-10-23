@@ -7,7 +7,7 @@
 \usepackage{datetime}
 \usepackage{booktabs}
 
-\usepackage{todonotes}
+\usepackage[figwidth=8cm]{todonotes}
 
 \usepackage[british]{babel}
 
@@ -187,6 +187,47 @@
     RGB+D hierarchical & $96.59791$ & $28.53001$ \\
     \bottomrule
   \end{tabular}
+\end{frame}
+\note{The quantitative results show that adding depth helps over RGB
+  alone. This is because depth tends to have less variety, it is more
+  reliable compared to texture, and also RGB can be more influenced by
+  shadows, noise.}
+\note{The hierarchical training improves significantly the results.
+  It can be noted that although the global accuracy is very high, the
+  per class accuracy is very low. This is because there are a few very
+  small and rare classes (like bearings) which have (as expected) a
+  very low accuracy, bringing the overall average accuracy to a low
+  level.}
+
+\begin{frame}{Qualitative results}
+  Hierarchical U-NET with RGB+Depth as input
+  \begin{figure}[h]\centering
+    \only<1>{\missingfigure{Example}}
+  \end{figure}
+\end{frame}
+\note{Qualitative results on test images (images that were not used
+  during training):\@ The accuracy is very good at the class level,
+  terrain, vegetation, bridge are very well recognised. The main
+  parts of the bridge are also well identified: columns, piers,
+  abutment, deck.}
+
+\note{There are of course mistakes as well, like in the picture on
+  top, the network unifies the two piers.  But overall it does get the
+  classes, even the smaller ones like handrails.}
+
+\note{\ldots and light-poles. There is a lot of potential in this
+  approach. The challenge now is to get some real labelled data, to
+  fine-tune the network on real data, so that it is capable of
+  segmenting any real image of a bridge.}
+
+\section{Conclusion}
+
+\begin{frame}{Summary}
+  Git repositories
+\end{frame}
+
+\begin{frame}[standout]
+  Questions?
 \end{frame}
 
 \end{document}
