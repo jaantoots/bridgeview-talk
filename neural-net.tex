@@ -13,30 +13,30 @@
   % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
   \node[input neuron, pin={[pin edge={<-}]left:}] (I-\name) at (0,-\y) {};
 
-  \node[annot, above of=I-1, node distance=1cm] (il) {\scriptsize input layer};
+  \node[annot, above of=I-1, node distance=1cm] (il) {\small input layer};
 
   % Draw the hidden layer nodes
   \foreach \name / \y in {1,...,4} \path[yshift=0.5cm] node[hidden
   neuron] (H1-\name) at (\layersep,-\y cm) {};
 
-  \node[annot, above of=H1-1, node distance=1cm] (h1l) {\scriptsize hidden layer 1};
+  \node[annot, above of=H1-1, node distance=1cm] (h1l) {\small hidden layer 1};
   
   \foreach \name / \y in {1,...,4} \path[yshift=0.5cm] node[hidden
   neuron] (H2-\name) at (2*\layersep,-\y cm) {};
 
-  \node[annot, above of=H2-1, node distance=1cm] (h2l) {\scriptsize hidden layer 2};
+  \node[annot, above of=H2-1, node distance=1cm] (h2l) {\small hidden layer 2};
 
   \foreach \name / \y in {1,...,4} \path[yshift=0.5cm] node[hidden
   neuron] (H3-\name) at (3*\layersep,-\y cm) {};
 
-  \node[annot, above of=H3-1, node distance=1cm] (h3l) {\scriptsize hidden layer 3};
+  \node[annot, above of=H3-1, node distance=1cm] (h3l) {\small hidden layer 3};
 
   % Draw the output layer node
   \foreach \name / \y in {1,...,2} \path[yshift=-0.5cm] node[output
   neuron, pin={[pin edge={->}]right:}] (O-\name) at
   (4*\layersep,-\y cm) {};
 
-  \node[annot, above of=O-1, node distance=1cm] (ol) {\scriptsize output layer};
+  \node[annot, above of=O-1, node distance=1cm] (ol) {\small output layer};
 
   % Connect nodes
   \foreach \source in {1,...,3}
