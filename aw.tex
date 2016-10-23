@@ -1,0 +1,16 @@
+\begin{tikzpicture}
+  [var/.style={circle},
+    lab/.style={rectangle,fill=p-box},
+    pre/.style={<-,shorten <=1pt,semithick,draw},
+    post/.style={->,shorten >=1pt,semithick,draw}]
+  
+%  \clip (1.5,-2.5) rectangle (14.5,4.5);
+
+  \node (aws) at (0,0) {%
+    \includegraphics[width=4.5cm]{aw-start.png}
+  };
+  \node (awf) at (6,0) {%
+    \includegraphics[width=4.5cm]{aw-final.png}
+  }
+  edge[pre] (aws);
+\end{tikzpicture}
