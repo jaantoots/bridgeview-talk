@@ -5,6 +5,7 @@
 %\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{datetime}
+\usepackage{booktabs}
 
 \usepackage{todonotes}
 
@@ -22,7 +23,7 @@
 
 \maketitle
 
-\section{Introduction}
+\section{Approach}
 
 \begin{frame}{Deep learning for semantic and geometric segmentation}
   \begin{figure}[h]\centering
@@ -48,6 +49,144 @@
   \begin{figure}[h]\centering
     \include{neural-net}
   \end{figure}
+\end{frame}
+\note{Deep learning relies on deep neural networks, which are powerful
+  models, with high capacity to learn from examples. But large
+  training sets are required because the models can have millions of
+  parameters. Moreover, training a neural network requires high
+  computational resources. Existing methods deal mainly with text,
+  images, or videos, and existing computational resources (GPUs) can
+  accommodate them.}
+\note{For our problem, we would prefer images and videos, but methods
+  for estimating depth and 3D from images are not sufficiently
+  accurate. So we need to use point clouds, which provide accurate
+  geometry. But point clouds contain millions of 3D points, having
+  huge memory requirements, and cannot be used efficiently for GPU
+  processing.}
+
+\subsection{Input}
+
+\begin{frame}{Unordered point-cloud}
+  \begin{figure}[h]\centering
+    \missingfigure{Point cloud}
+  \end{figure}
+\end{frame}
+\note{This is because we need to deal with unordered point clouds,
+  like the ones the laser-scanners provide after registration. An
+  unordered point cloud is a set of points with 3D coordinates. This
+  is opposed to ordered point-clouds, e.g.\ occupancy grids or depth
+  maps.}
+
+\begin{frame}{Occupancy grid}
+  \begin{figure}[h]\centering
+    \missingfigure{Grid}
+  \end{figure}
+\end{frame}
+\note{An occupancy grid is a 3D grid where each cell is marked
+  ``occupied'' if there is a point inside or ``free'' otherwise. Most
+  of existing deep learning approaches for 3D point-clouds use this
+  representation with 3D (volumetric) neural networks. But they work
+  only with small objects (chairs, tables). The requirements for large
+  structures like bridges would be prohibitive. Moreover, the memory
+  would be wasted since in our case most of the cells would be marked
+  as ``free''.}
+
+\begin{frame}{Depth map}
+  \begin{figure}[h]\centering
+    \missingfigure{Depth}
+  \end{figure}
+\end{frame}
+\note{So we chose to represent a point cloud through RGBD images,
+  without any loss of information. A depth map is an image where each
+  pixel encodes the distance between the camera and the 3D points;
+  here colour-coded: cold colours represent shorter distances.}
+
+\subsection{Segmentation of bridges}
+
+\begin{frame}{Segmentation of bridges}
+  Main steps:
+  \begin{itemize}
+  \item Render RGB and depth images
+  \item Segmentation of images
+  \item Back-project labels into point-cloud
+  \end{itemize}
+  Because real data is difficult to obtain, we use synthetically
+  textured bridge models.
+\end{frame}
+
+\section{Dataset}
+
+\begin{frame}{Overview}
+  \begin{itemize}
+  \item 30 models of bridges
+  \item 4535 rendered RGBD images (4100 training, 435 test)
+  \item Hierarchical labels
+    \begin{itemize}
+    \item Geometric labels (12) / class labels (7) / part labels (28)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{TODO}
+  Figures!
+\end{frame}
+
+\section{Model}
+
+\begin{frame}{Part-based segmentation}
+  \begin{description}
+  \item[Baseline] U-NET trained on part labels
+  \item[Proposed architecture] Hierarchical U-NET --- each decoder
+    module outputs a different label (class label, part label,
+    geometric label)
+  \end{description}
+  \begin{figure}[h]\centering
+    \missingfigure{Architecture}
+  \end{figure}
+\end{frame}
+\note{We propose a dedicated architecture for part-based segmentation,
+  where the network predicts different labels at each level. The
+  network first has to recognise if the pixel belongs to the bridge
+  class or other class (e.g.\ vegetation, terrain), and then recognise
+  the part and the geometric shape.  Experiments show that this
+  approach is better than just predicting directly only the part. In
+  the hierarchical case we inject more supervision, hence results are
+  better.}
+
+\section{Results}
+
+\begin{frame}{Results}
+  \begin{block}{Experiments}
+    \begin{enumerate}
+    \item RGB vs RGB-D using the baseline architecture
+    \item Flat vs hierarchical using RGB-D input
+    \end{enumerate}
+  \end{block}
+  \begin{block}{Evaluation}
+    \begin{description}
+    \item[Global avg.\ accuracy] among all the pixels, how many have
+      been labelled correctly on average per image
+    \item[Per class avg.\ accuracy] how many pixels have been labelled
+      correctly for each class on average
+    \end{description}
+  \end{block}
+\end{frame}
+\note{Two sets of experiments:\@ RGB vs.\ RGB-D: to see if adding
+  depth helps or if appearance is enough for classification; flat vs
+  hierarchical: to prove that the different levels of supervision are
+  improving the performance. For quantitative evaluation, we use two
+  measures.}
+
+\begin{frame}{Quantitative results}
+  \begin{tabular}{lll}
+    \toprule
+    Architecture/input & Global accuracy & Per class accuracy \\
+    \midrule
+    RGB baseline & $93.4072$ & $20.64704$ \\
+    RGB+D baseline & $95.0932$ & $22.63335$ \\
+    RGB+D hierarchical & $96.59791$ & $28.53001$ \\
+    \bottomrule
+  \end{tabular}
 \end{frame}
 
 \end{document}
