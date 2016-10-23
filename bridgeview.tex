@@ -6,16 +6,48 @@
 \usepackage{hyperref}
 \usepackage{datetime}
 
+\usepackage{todonotes}
+
 \usepackage[british]{babel}
+
+\usetheme{metropolis}
 
 \title{Generate 3D models for large-scale objects}
 \author{Jaan Toots \and Viorica Patraucean}
 \institute[CSIC]{Cambridge Centre for Smart Infrastructure and
   Construction}
-\date{Cambridge \\ \formatdate{24}{10}{2016}}
+\date{\formatdate{24}{10}{2016}}
 
 \begin{document}
 
 \maketitle
+
+\section{Introduction}
+
+\begin{frame}{Deep learning for semantic and geometric segmentation}
+  \begin{figure}[h]\centering
+    \only<1>{\missingfigure{Photo of bridge}}
+    \only<2>{\missingfigure{Photo of model}}
+  \end{figure}
+  
+\end{frame}
+\note{The project aims at generating BIM (Building Information Model)
+  for existing bridges in an automatic way. This requires modelling
+  the geometry and the materials of the bridge components. Material
+  recognition from images is (relatively) solved. The challenge is on
+  the geometry side.}
+\note{\ldots which amounts to recognising for each bridge part what it
+  represents and what shape it has, e.g.\ a column that has
+  cylindrical shape. Once this info is available, a geometric fitting
+  step is needed to get the parameters for each part. Due to the
+  recent success of deep learning in various tasks like image
+  labelling, object detection, semantic segmentation, we decided to
+  use a deep learning based approach as well.}
+
+\begin{frame}{Neural networks}
+  \begin{figure}[h]\centering
+    \include{neural-net}
+  \end{figure}
+\end{frame}
 
 \end{document}
