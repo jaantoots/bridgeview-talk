@@ -1,11 +1,13 @@
 \documentclass{beamer}
 \usepackage{geometry}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 %\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{datetime}
 \usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{keyval}
+\usepackage{ifthen}
 
 \usepackage[figwidth=8cm]{todonotes}
 
@@ -27,7 +29,7 @@
 
 \begin{frame}{Deep learning for semantic and geometric segmentation}
   \begin{figure}[h]\centering
-    \only<1>{\missingfigure{Photo of bridge}}
+    \only<1>{\includegraphics[width=9cm]{ninewells-photo.jpg}}
     \only<2>{\missingfigure{Photo of model}}
   \end{figure}
   
@@ -68,7 +70,7 @@
 
 \begin{frame}{Unordered point-cloud}
   \begin{figure}[h]\centering
-    \missingfigure{Point cloud}
+    \includegraphics[width=9cm]{ninewells-cloud.png}
   \end{figure}
 \end{frame}
 \note{This is because we need to deal with unordered point clouds,
@@ -79,7 +81,7 @@
 
 \begin{frame}{Occupancy grid}
   \begin{figure}[h]\centering
-    \missingfigure{Grid}
+    \include{grid}
   \end{figure}
 \end{frame}
 \note{An occupancy grid is a 3D grid where each cell is marked
