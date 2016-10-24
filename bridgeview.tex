@@ -5,6 +5,8 @@
 \usepackage{hyperref}
 \usepackage{datetime}
 \usepackage{booktabs}
+\usepackage{listings}
+
 \usepackage{tikz}
 \usepackage{keyval}
 \usepackage{ifthen}
@@ -135,6 +137,8 @@
   \end{itemize}
 \end{frame}
 
+\subsection{Models}
+
 \begin{frame}{Models}
   Start with models from various sources and prepare for
   rendering. Add landscape, roads and vegetation.
@@ -148,7 +152,14 @@
   \includegraphics[width=\textwidth]{blender.png}
 \end{frame}
 
+\subsection{Bridgeview}
 
+\begin{frame}{Bridgeview}
+  Scripts to render visual, semantic and depth images using
+  Blender.
+  
+  \lstinputlisting[language=sh]{sample.sh}
+\end{frame}
 
 \begin{frame}{TODO}
   Figures!
