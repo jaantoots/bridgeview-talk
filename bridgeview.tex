@@ -27,9 +27,9 @@
 
 \maketitle
 
-\section{Approach}
+\section{Introduction}
 
-\begin{frame}{Deep learning for semantic and geometric segmentation}
+\begin{frame}{Part-based geometric and semantic modelling}
   \begin{figure}[h]\centering
     \only<1>{\includegraphics[width=9cm]{ninewells-photo.jpg}}
     \only<2>{\includegraphics[width=9cm]{ninewells-view.png}}
@@ -49,7 +49,7 @@
   labelling, object detection, semantic segmentation, we decided to
   use a deep learning based approach as well.}
 
-\begin{frame}{Neural networks}
+\begin{frame}{Deep learning for semantic and geometric segmentation}
   \begin{figure}[h]\centering
     \include{neural-net}
   \end{figure}
@@ -227,9 +227,9 @@
     \toprule
     Architecture/input & Global accuracy & Per class accuracy \\
     \midrule
-    RGB baseline & $93.4072$ & $20.64704$ \\
-    RGB+D baseline & $95.0932$ & $22.63335$ \\
-    RGB+D hierarchical & $96.59791$ & $28.53001$ \\
+    RGB baseline & 93.4072 & 20.64704 \\
+    RGB+D baseline & 95.0932 & 22.63335 \\
+    RGB+D hierarchical & \textbf{96.59791} & \textbf{28.53001} \\
     \bottomrule
   \end{tabular}
 \end{frame}
