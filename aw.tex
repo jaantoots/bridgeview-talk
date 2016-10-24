@@ -1,9 +1,10 @@
+\definecolor{mDarkTeal}{HTML}{23373b}
+
 \begin{tikzpicture}
-  [var/.style={circle},
-    lab/.style={rectangle,fill=p-box},
-    pre/.style={<-,shorten <=1pt,semithick,draw},
-    post/.style={->,shorten >=1pt,semithick,draw}]
-  
+  [lab/.style={rectangle},
+  pre/.style={<-,shorten <=1pt,draw=mDarkTeal},
+  post/.style={->,shorten >=1pt,draw=mDarkTeal}]
+
 %  \clip (1.5,-2.5) rectangle (14.5,4.5);
 
   \node (aws) at (0,0) {%
